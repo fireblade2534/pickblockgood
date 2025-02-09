@@ -7,9 +7,7 @@ import java.util.List;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.Category;
-import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.TransitiveObject;
-import pickblockgood.pickblockgood.PickblockgoodClient;
+
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.EnvType;
 
