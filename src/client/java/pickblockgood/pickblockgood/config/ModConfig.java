@@ -1,0 +1,26 @@
+package pickblockgood.pickblockgood.config;
+
+
+import java.util.Arrays;
+import java.util.List;
+
+import me.shedaniel.autoconfig.ConfigData;
+import me.shedaniel.autoconfig.annotation.Config;
+import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Category;
+import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.TransitiveObject;
+import pickblockgood.pickblockgood.PickblockgoodClient;
+import net.fabricmc.api.Environment;
+import net.fabricmc.api.EnvType;
+
+@Environment(EnvType.CLIENT)
+@Config(name="pickblockgood")
+public class ModConfig implements ConfigData{
+    @ConfigEntry.Gui.Tooltip()
+    private String doNotReplaceItemTags="swords, tools";
+
+    public List<String> doNotReplaceItemTagsList(){
+        List<String> splitText=Arrays.asList(doNotReplaceItemTags.split("\\s*,\\s*"));
+        return splitText;
+    }
+}

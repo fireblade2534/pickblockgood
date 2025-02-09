@@ -1,0 +1,5 @@
+{
+    "text.autoconfig.pickblockgood.title": "Pick Block Good - Config",
+    "text.autoconfig.pickblockgood.option.doNotReplaceItemTags": "Item Tags To Not Replace",
+    "text.autoconfig.pickblockgood.option.doNotReplaceItemTags.@Tooltip": "A comma seperated list of item tags to avoid replacing"
+}

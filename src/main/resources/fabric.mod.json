@@ -1,0 +1,50 @@
+{
+	"schemaVersion": 1,
+	"id": "pickblockgood",
+	"version": "${version}",
+	"name": "pickblockgood",
+	"description": "This mod prevents pick block from replacing tools",
+	"authors": [
+		"Fireblade2534"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/pickblockgood/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": [
+			"pickblockgood.pickblockgood.Pickblockgood"
+		],
+		"client": [
+			"pickblockgood.pickblockgood.PickblockgoodClient"
+		],
+		"modmenu": [
+			"pickblockgood.pickblockgood.config.ModMenuIntegration"
+		]
+	},
+	"mixins": [
+		"pickblockgood.mixins.json",
+		{
+			"config": "pickblockgood.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"cloth-config": ">=11.0.0"
+	},
+	"custom": {
+		"pickblockgood": {
+			"update_checker": false
+		}
+  	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
