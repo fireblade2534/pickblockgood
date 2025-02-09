@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,6 +26,8 @@ import net.minecraft.util.collection.DefaultedList;
 
 @Mixin(PlayerInventory.class)
 public class PlayerInventoryMixin {
+
+    @Shadow @Final private PlayerEntity player;
 
     @Shadow @Final private DefaultedList<ItemStack> main;
 
@@ -40,21 +43,25 @@ public class PlayerInventoryMixin {
 			}
 		}
 
+        boolean isCreative = player.getAbilities().creativeMode;
         List<String> doNotReplaceItemTags=PickblockgoodClient.config.doNotReplaceItemTagsList();
 
         outerLoop:
 		for (int ix = 0; ix < 9; ix++) {
-			int j = (this.selectedSlot + ix) % 9;
+            int j = (this.selectedSlot + ix) % 9;
             ItemStack slotItem=this.main.get(j);
-            RegistryEntry<Item> slotEntry=slotItem.getRegistryEntry();
-            for (String listItem : doNotReplaceItemTags){
-                if (slotEntry.isIn(TagKey.of(RegistryKeys.ITEM, new Identifier(listItem)))){
-                    continue outerLoop;
+
+            if ((PickblockgoodClient.config.preventReplaceInCreative && isCreative) || !isCreative){
+                RegistryEntry<Item> slotEntry=slotItem.getRegistryEntry();
+                for (String listItem : doNotReplaceItemTags){
+                    if (slotEntry.isIn(TagKey.of(RegistryKeys.ITEM, new Identifier(listItem)))){
+                        continue outerLoop;
+                    }
                 }
             }
-			if (!slotItem.hasEnchantments()) {
-				return j;
-			}
+            if (!slotItem.hasEnchantments()) {
+                return j;
+            }
 		}
         return this.selectedSlot;
     }

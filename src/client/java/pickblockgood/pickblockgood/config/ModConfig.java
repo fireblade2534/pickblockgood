@@ -17,6 +17,8 @@ public class ModConfig implements ConfigData{
     @ConfigEntry.Gui.Tooltip()
     private String doNotReplaceItemTags="swords, tools";
 
+    public boolean preventReplaceInCreative=false;
+
     public List<String> doNotReplaceItemTagsList(){
         List<String> splitText=Arrays.asList(doNotReplaceItemTags.split("\\s*,\\s*"));
         return splitText;
