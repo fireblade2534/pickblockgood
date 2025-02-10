@@ -35,7 +35,8 @@ public class PlayerInventoryMixin {
 
     @WrapMethod(method = "getSwappableHotbarSlot")
     private int injected(Operation<Integer> original){
-        
+        PickblockgoodClient.LOGGER.info("afwweaf");
+
 		for (int i = 0; i < 9; i++) {
 			int j = (this.selectedSlot + i) % 9;
 			if (this.main.get(j).isEmpty()) {
